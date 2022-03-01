@@ -94,10 +94,12 @@ cache-clear:
 	docker compose exec app composer clear-cache
 	@make optimize-clear
 	docker compose exec app php artisan event:clear
+# npmのインストール
 npm:
 	@make npm-install
 npm-install:
 	docker compose exec web npm install
+# npm run devはここ！
 npm-dev:
 	docker compose exec web npm run dev
 npm-watch:
