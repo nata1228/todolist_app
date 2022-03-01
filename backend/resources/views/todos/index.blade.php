@@ -26,7 +26,7 @@
                 </div>
                 
                 <div class="button">
-                    <a href="/todo/{{$todo->id}}" class="btn btn-primary" type="submit">編集</a>
+                    <a href="{{route('todo.edit',['id' => $todo->id])}}" class="btn btn-primary">編集</a>
                     <form action="{{route('todo.delete',['id' => $todo->id])}}"  method="post">
                     @csrf
                         <button  class="btn btn-danger" type="submit">削除</button>
@@ -35,6 +35,5 @@
             </div>
         @endforeach
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
