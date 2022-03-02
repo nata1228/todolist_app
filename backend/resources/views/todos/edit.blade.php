@@ -7,11 +7,12 @@
     <title>編集画面</title>
 </head>
 <body>
-    <form action="" method="get">
-        <input type="text">
-        <input type="date">
+    <form action="{{route('todo.update')}}" method="post">
+    @csrf
+        <input type="hidden" name="id" value="{{$todos->id}}">
+        <input type="text" name="body" value="{{$todos->body}}">
+        <input type="date" name="limit" value="{{$todos->limit}}">
         <button type="button" class="btn btn-success">更新する</button>
     </form>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

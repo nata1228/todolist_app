@@ -30,4 +30,12 @@ class TodoController extends Controller
         $todo->delete();
         return redirect('/todo');
     }
+
+    public function update(Request $request) {
+        $todo = Todo::find($request->input('id'));
+        $todo->body = $request->input('body');
+        $todo->limit = $request->input('limit');
+        $todo->save();
+        return redirect('/todo');
+    }
 }
