@@ -19,7 +19,7 @@
 
     <div class="main">
         @foreach($todos as $todo)
-            <div class='a'>
+            <div class="main-container">
                 <div class="contents">
                     <p>{{$todo->body}}</p>
                     <p>{{$todo->limit}}</p>
