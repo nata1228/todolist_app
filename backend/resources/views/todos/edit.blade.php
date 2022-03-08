@@ -9,10 +9,10 @@
 <body>
     <form action="{{route('todo.update')}}" method="post">
     @csrf
-        <input type="hidden" name="id" value="{{$todos->id}}">
-        <input type="text" name="body" value="{{$todos->body}}">
-        <input type="date" name="limit" value="{{$todos->limit}}">
-        <button type="button" class="btn btn-success">更新する</button>
+        <input type="hidden" name="id" value="{{$todo->id}}">
+        <input type="text" name="body" value="{{$todo->body}}">
+        <input type="date" name="limit" value="{{$todo->limit}}">
+        <button class="btn btn-success">更新する</button>
     </form>
 </body>
 </html>

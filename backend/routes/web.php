@@ -18,6 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
 Route::get('/todo',[TodoController::class,'index'])->name('todo.index');
 Route::get('/todo/{id}',[TodoController::class,'edit'])->name('todo.edit');
 Route::post('/todo/store',[TodoController::class,'store'])->name('todo.store');
