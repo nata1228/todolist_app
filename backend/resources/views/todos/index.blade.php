@@ -8,32 +8,37 @@
     <title>Todoリスト</title>
 </head>
 <body>
-    <div class="add">
-        <form action="{{route('todo.store')}}" method="post">
-        @csrf
-            <input type="text" name="body">
-            <input type="date" name="limit">
-            <button class="btn btn-warning" type="submit">追加</button>
-        </form>
-    </div>
+    <div id="counter" v-cloak>
+        <div>@{{counter}}</div>
+        <button @click="clickButton">click</button>
+        <div class="add">
+            <form action="{{route('todo.store')}}" method="post">
+            @csrf
+                <input type="text" name="body">
+                <input type="date" name="limit">
+                <button class="btn btn-warning" type="submit">追加</button>
+            </form>
+        </div>
 
-    <div class="main">
-        @foreach($todos as $todo)
-            <div class="main-container">
-                <div class="contents">
-                    <p>{{$todo->body}}</p>
-                    <p>{{$todo->limit}}</p>
+        <div class="main">
+            @foreach($todos as $todo)
+                <div class="main-container">
+                    <div class="contents">
+                        <p>{{$todo->body}}</p>
+                        <p>{{$todo->limit}}</p>
+                    </div>
+                    
+                    <div class="button">
+                        <a href="{{route('todo.edit',['id' => $todo->id])}}" class="btn btn-primary">編集</a>
+                        <form action="{{route('todo.delete',['id' => $todo->id])}}"  method="post">
+                        @csrf
+                            <button  class="btn btn-danger" type="submit">削除</button>
+                        </form>
+                    </div>
                 </div>
-                
-                <div class="button">
-                    <a href="{{route('todo.edit',['id' => $todo->id])}}" class="btn btn-primary">編集</a>
-                    <form action="{{route('todo.delete',['id' => $todo->id])}}"  method="post">
-                    @csrf
-                        <button  class="btn btn-danger" type="submit">削除</button>
-                    </form>
-                </div>
-            </div>
-        @endforeach
+            @endforeach
+        </div>
     </div>
+    <script src="{{ mix('js/dist/index.js') }}"></script>
 </body>
 </html>
