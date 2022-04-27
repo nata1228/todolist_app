@@ -40,4 +40,12 @@ class TodoController extends Controller
         $todo->save();
         return redirect('/todo');
     }
+
+    public function info(Request $request){
+        return response()->json($request->body);
+    }
+
+    public function get(){
+        $todos = Todo::where('user_id',Auth::id())->get();
+    }
 }

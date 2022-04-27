@@ -25,12 +25,12 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::group(['middleware' => 'auth'], function() {
-    Route::get('/todo',[TodoController::class,'index'])->name('todo.index');
-    Route::get('/todo/{id}',[TodoController::class,'edit'])->name('todo.edit');
-    Route::post('/todo/store',[TodoController::class,'store'])->name('todo.store');
-    Route::post('/todo/delete/{id}',[TodoController::class,'delete'])->name('todo.delete');
-    Route::post('/todo/update',[TodoController::class,'update'])->name('todo.update');
+Route::group(['middleware' => 'auth', 'prefix' => 'todo'], function() {
+    Route::get('/',[TodoController::class,'index'])->name('todo.index');
+    Route::get('get',[TodoController::class,'get'])->name('todo.get');
+    Route::get('edit/{id}',[TodoController::class,'edit'])->name('todo.edit');
+    Route::post('info',[TodoController::class,'info'])->name('todo.info');
+    Route::post('store',[TodoController::class,'store'])->name('todo.store');
+    Route::post('delete/{id}',[TodoController::class,'delete'])->name('todo.delete');
+    Route::post('update',[TodoController::class,'update'])->name('todo.update');
 });
-
-

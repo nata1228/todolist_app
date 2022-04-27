@@ -9,8 +9,8 @@
 </head>
 <body>
     <div id="counter" v-cloak>
-        <div>@{{counter}}</div>
-        <button @click="clickButton">click</button>
+        <input type="text" v-model="testInput">
+        <button @click="testAxios">click</button>
         <div class="add">
             <form action="{{route('todo.store')}}" method="post">
             @csrf
@@ -39,6 +39,6 @@
             @endforeach
         </div>
     </div>
-    <script src="{{ mix('js/dist/index.js') }}"></script>
+    <script src="{{ mix('js/dist/todos/index.js') }}"></script>
 </body>
 </html>
