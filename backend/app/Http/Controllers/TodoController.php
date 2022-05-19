@@ -14,12 +14,14 @@ class TodoController extends Controller
     }
 
     public function store(Request $request) {
+        \Log::debug($request);
         $todo = new Todo();
         $todo->user_id = Auth::id();
-        $todo->body = $request->input('body');
-        $todo->limit = $request->input('limit');
+        $todo->body = $request->body;
+        $todo->limit = $request->limit;
         $todo->save();
-        return redirect('/todo');
+        $todos =  Todo::where('user_id',Auth::id())->get();
+        return $todos;
     }
 
     public function edit($id) {
@@ -47,5 +49,6 @@ class TodoController extends Controller
 
     public function get(){
         $todos = Todo::where('user_id',Auth::id())->get();
+        return $todos;
     }
 }

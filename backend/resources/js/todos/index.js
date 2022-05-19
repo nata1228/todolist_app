@@ -1,5 +1,4 @@
 import { createApp } from "vue";
-import Axios from "axios";
 import axios from "axios";
 
 createApp({
@@ -9,11 +8,13 @@ createApp({
             jojo: "jojo",
             counter: 0,
             testInput: "",
-            todos:[]
+            newTodo: "",
+            todos: []
         };
     },
     mounted() {
         console.log("sss");
+        this.getAxios();
     },
     methods: {
         clickButton(){
@@ -23,20 +24,29 @@ createApp({
             axios.post("/todo/info", {
                 body: this.testInput
             })
-            .then((res => {
+            .then(res => {
                 console.log(res);
             })
-            .catch((e) => {
+            .catch(e => {
                 console.log(e);
                 console.log("error");
             })
         },
         getAxios(){
             axios.get("/todo/get")
-            .then((res) => {
-                console.log(res);
+            .then(res => {
+                console.log(res.data);
                 this.todos = res.data;
             })
-        }
+        },
+        addTodoAxios:function(){
+            console.log(this.new_todo);
+                axios.post('/todo/store',{
+                    title: this.new_todo
+                }).then((res)=>{
+                    this.todos = res.data
+                    this.new_todo = ''
+                })
+        },
     }
 }).mount("#counter");

@@ -9,24 +9,26 @@
 </head>
 <body>
     <div id="counter" v-cloak>
+    <ul>
+        <li v-for="todo in todos">
+            @{{ todo.body}}
+        </li>
+    </ul>
         <input type="text" v-model="testInput">
         <button @click="testAxios">click</button>
         <div class="add">
-            <form action="{{route('todo.store')}}" method="post">
-            @csrf
-                <input type="text" name="body">
-                <input type="date" name="limit">
-                <button class="btn btn-warning" type="submit">追加</button>
-            </form>
+                <input type="text" name="body" v-model="addTodo">
+                <input type="date" name="limit" v-model="">
+                <button class="btn btn-warning" @click="addTodoAxios">追加</button>
         </div>
 
         <div class="main">
             @foreach($todos as $todo)
-                <div class="main-container">
-                    <div class="contents">
-                        <p>{{$todo->body}}</p>
-                        <p>{{$todo->limit}}</p>
-                    </div>
+                <div class="main-container" v-for="todo in todos">
+                    <div class="contents" >
+                        <p>@{{ todo.body }}</p>
+                        <p>@{{ todo.limit }}</p>
+                    </div> 
                     
                     <div class="button">
                         <a href="{{route('todo.edit',['id' => $todo->id])}}" class="btn btn-primary">編集</a>
@@ -42,3 +44,5 @@
     <script src="{{ mix('js/dist/todos/index.js') }}"></script>
 </body>
 </html>
+
+
