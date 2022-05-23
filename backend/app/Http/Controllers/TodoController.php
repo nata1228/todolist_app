@@ -32,7 +32,8 @@ class TodoController extends Controller
     public function delete($id) {
         $todo = Todo::find($id);
         $todo->delete();
-        return redirect('/todo');
+        $todos =  Todo::where('user_id',Auth::id())->get();
+        return $todos;
     }
 
     public function update(Request $request) {

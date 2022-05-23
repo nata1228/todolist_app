@@ -9,17 +9,10 @@
 </head>
 <body>
     <div id="counter" v-cloak>
-    <ul>
-        <li v-for="todo in todos">
-            @{{ todo.body}}
-        </li>
-    </ul>
-        <input type="text" v-model="testInput">
-        <button @click="testAxios">click</button>
         <div class="add">
-                <input type="text" name="body" v-model="addTodo">
-                <input type="date" name="limit" v-model="">
-                <button class="btn btn-warning" @click="addTodoAxios">追加</button>
+                <input type="text" name="body" v-model="newTodo.body">
+                <input type="date" name="limit" v-model="newTodo.limit">
+                <button class="btn btn-warning" @click="addTodo">追加</button>
         </div>
 
         <div class="main">
@@ -32,10 +25,7 @@
                     
                     <div class="button">
                         <a href="{{route('todo.edit',['id' => $todo->id])}}" class="btn btn-primary">編集</a>
-                        <form action="{{route('todo.delete',['id' => $todo->id])}}"  method="post">
-                        @csrf
-                            <button  class="btn btn-danger" type="submit">削除</button>
-                        </form>
+                        <button  class="btn btn-danger" @click="deleteTodo(id)">削除</button>
                     </div>
                 </div>
             @endforeach

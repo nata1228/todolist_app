@@ -22523,28 +22523,17 @@ __webpack_require__.r(__webpack_exports__);
       jojo: "jojo",
       counter: 0,
       testInput: "",
-      newTodo: "",
+      newTodo: {
+        body: "",
+        limit: ""
+      },
       todos: []
     };
   },
   mounted: function mounted() {
-    console.log("sss");
     this.getAxios();
   },
   methods: {
-    clickButton: function clickButton() {
-      this.counter++;
-    },
-    testAxios: function testAxios() {
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/todo/info", {
-        body: this.testInput
-      }).then(function (res) {
-        console.log(res);
-      })["catch"](function (e) {
-        console.log(e);
-        console.log("error");
-      });
-    },
     getAxios: function getAxios() {
       var _this = this;
 
@@ -22553,15 +22542,29 @@ __webpack_require__.r(__webpack_exports__);
         _this.todos = res.data;
       });
     },
-    addTodoAxios: function addTodoAxios() {
+    addTodo: function addTodo() {
       var _this2 = this;
 
-      console.log(this.new_todo);
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post('/todo/store', {
-        title: this.new_todo
+      console.log(this.newTodo.body);
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/todo/store", {
+        body: this.newTodo.body,
+        limit: this.newTodo.limit
       }).then(function (res) {
         _this2.todos = res.data;
-        _this2.new_todo = '';
+
+        _this2.todos.push(_this2.newTodo);
+
+        _this2.newTodo.body = '';
+        _this2.newTodo.limit = '';
+      });
+    },
+    deleteTodo: function deleteTodo(id) {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/delete/{id}", {
+        id: id
+      }).then.res(function (res) {
+        _this3.todos = res.data;
       });
     }
   }

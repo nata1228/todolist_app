@@ -8,30 +8,17 @@ createApp({
             jojo: "jojo",
             counter: 0,
             testInput: "",
-            newTodo: "",
+            newTodo: {
+                body: "",
+                limit: "",
+            },            
             todos: []
         };
     },
     mounted() {
-        console.log("sss");
         this.getAxios();
     },
     methods: {
-        clickButton(){
-            this.counter ++;
-        },
-        testAxios(){
-            axios.post("/todo/info", {
-                body: this.testInput
-            })
-            .then(res => {
-                console.log(res);
-            })
-            .catch(e => {
-                console.log(e);
-                console.log("error");
-            })
-        },
         getAxios(){
             axios.get("/todo/get")
             .then(res => {
@@ -39,14 +26,24 @@ createApp({
                 this.todos = res.data;
             })
         },
-        addTodoAxios:function(){
-            console.log(this.new_todo);
-                axios.post('/todo/store',{
-                    title: this.new_todo
-                }).then((res)=>{
+        addTodo(){
+            console.log(this.newTodo.body);
+                axios.post("/todo/store",{
+                    body: this.newTodo.body,
+                    limit: this.newTodo.limit
+                }).then(res => {
                     this.todos = res.data
-                    this.new_todo = ''
+                    this.todos.push(this.newTodo)
+                    this.newTodo.body = '';
+                    this.newTodo.limit = '';
                 })
         },
+        deleteTodo(id){
+            axios.post("/delete/{id}",{
+                id
+            }).then.res(res => {
+                this.todos = res.data
+            })
+        }
     }
 }).mount("#counter");
