@@ -25,7 +25,7 @@
                     
                     <div class="button">
                         <a href="{{route('todo.edit',['id' => $todo->id])}}" class="btn btn-primary">編集</a>
-                        <button  class="btn btn-danger" @click="deleteTodo(id)">削除</button>
+                        <button  class="btn btn-danger" @click="deleteTodo(todo.id)">削除</button>
                     </div>
                 </div>
             @endforeach

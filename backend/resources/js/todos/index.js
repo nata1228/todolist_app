@@ -39,7 +39,8 @@ createApp({
                 })
         },
         deleteTodo(id){
-            axios.post("/delete/{id}",{
+            console.log(id);
+            axios.post(`/delete/${id}`,{
                 id
             }).then.res(res => {
                 this.todos = res.data

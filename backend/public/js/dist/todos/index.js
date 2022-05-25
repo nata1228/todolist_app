@@ -22561,7 +22561,8 @@ __webpack_require__.r(__webpack_exports__);
     deleteTodo: function deleteTodo(id) {
       var _this3 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/delete/{id}", {
+      console.log(id);
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/delete/".concat(id), {
         id: id
       }).then.res(function (res) {
         _this3.todos = res.data;
