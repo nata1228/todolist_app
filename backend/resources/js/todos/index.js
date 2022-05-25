@@ -33,16 +33,14 @@ createApp({
                     limit: this.newTodo.limit
                 }).then(res => {
                     this.todos = res.data
-                    this.todos.push(this.newTodo)
                     this.newTodo.body = '';
                     this.newTodo.limit = '';
                 })
         },
         deleteTodo(id){
             console.log(id);
-            axios.post(`/delete/${id}`,{
-                id
-            }).then.res(res => {
+            axios.post(`/todo/delete/${id}`)
+            .then(res => {
                 this.todos = res.data
             })
         }

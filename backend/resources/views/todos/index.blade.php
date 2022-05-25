@@ -16,7 +16,6 @@
         </div>
 
         <div class="main">
-            @foreach($todos as $todo)
                 <div class="main-container" v-for="todo in todos">
                     <div class="contents" >
                         <p>@{{ todo.body }}</p>
@@ -24,11 +23,10 @@
                     </div> 
                     
                     <div class="button">
-                        <a href="{{route('todo.edit',['id' => $todo->id])}}" class="btn btn-primary">編集</a>
+                        <button class="btn btn-primary">編集</button>
                         <button  class="btn btn-danger" @click="deleteTodo(todo.id)">削除</button>
                     </div>
                 </div>
-            @endforeach
         </div>
     </div>
     <script src="{{ mix('js/dist/todos/index.js') }}"></script>

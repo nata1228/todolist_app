@@ -22551,9 +22551,6 @@ __webpack_require__.r(__webpack_exports__);
         limit: this.newTodo.limit
       }).then(function (res) {
         _this2.todos = res.data;
-
-        _this2.todos.push(_this2.newTodo);
-
         _this2.newTodo.body = '';
         _this2.newTodo.limit = '';
       });
@@ -22562,9 +22559,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       console.log(id);
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/delete/".concat(id), {
-        id: id
-      }).then.res(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/todo/delete/".concat(id)).then(function (res) {
         _this3.todos = res.data;
       });
     }
