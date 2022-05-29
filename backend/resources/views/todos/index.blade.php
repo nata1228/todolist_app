@@ -18,12 +18,14 @@
         <div class="main">
                 <div class="main-container" v-for="todo in todos">
                     <div class="contents" >
-                        <p>@{{ todo.body }}</p>
-                        <p>@{{ todo.limit }}</p>
+                        <input type="text" v-model="todo.body" disabled="testDisabled">
+                        <input type="text" v-model="todo.limit" disabled="testDisabled">
                     </div> 
                     
                     <div class="button">
-                        <button class="btn btn-primary">編集</button>
+                                                <!-- 編集ボタンを押したら完了ボタンに切り替わり、contents内inputのdisabledが解除される -->
+                        <button class="btn btn-primary" @click="editTodo">編集</button>
+                        <!-- <button class="btn btn-primary" @click="finishedit">完了</button> -->
                         <button  class="btn btn-danger" @click="deleteTodo(todo.id)">削除</button>
                     </div>
                 </div>

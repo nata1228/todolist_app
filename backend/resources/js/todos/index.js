@@ -4,10 +4,7 @@ import axios from "axios";
 createApp({
     data() {
         return {
-            hoge: 'adachi',
-            jojo: "jojo",
-            counter: 0,
-            testInput: "",
+            testDisabled: true,
             newTodo: {
                 body: "",
                 limit: "",
@@ -43,6 +40,9 @@ createApp({
             .then(res => {
                 this.todos = res.data
             })
+        },editTodo(){
+            this.testDisabled = false
         }
+
     }
 }).mount("#counter");

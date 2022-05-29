@@ -22519,10 +22519,7 @@ __webpack_require__.r(__webpack_exports__);
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
   data: function data() {
     return {
-      hoge: 'adachi',
-      jojo: "jojo",
-      counter: 0,
-      testInput: "",
+      testDisabled: true,
       newTodo: {
         body: "",
         limit: ""
@@ -22562,6 +22559,9 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_1___default().post("/todo/delete/".concat(id)).then(function (res) {
         _this3.todos = res.data;
       });
+    },
+    editTodo: function editTodo() {
+      this.testDisabled = false;
     }
   }
 }).mount("#counter");
