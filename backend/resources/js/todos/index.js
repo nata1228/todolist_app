@@ -42,7 +42,16 @@ createApp({
             })
         },editTodo(){
             this.testDisabled = false
+        },
+        editFinish(body ,limit){
+            console.log(body ,limit);
+            axios.post("/todo/update",{
+                body: body,
+                limit: limit
+            }).then(res => {
+                this.todos = res.data
+                this.testDisabled = true
+            })
         }
-
     }
 }).mount("#counter");

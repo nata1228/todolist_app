@@ -22562,6 +22562,18 @@ __webpack_require__.r(__webpack_exports__);
     },
     editTodo: function editTodo() {
       this.testDisabled = false;
+    },
+    editFinish: function editFinish(body, limit) {
+      var _this4 = this;
+
+      console.log(body, limit);
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/todo/update", {
+        body: body,
+        limit: limit
+      }).then(function (res) {
+        _this4.todos = res.data;
+        _this4.testDisabled = true;
+      });
     }
   }
 }).mount("#counter");
