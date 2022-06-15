@@ -37,9 +37,9 @@ class TodoController extends Controller
     }
 
     public function update(Request $request) {
-        $todo = Todo::find($request->input('id'));
-        $todo->body = $request->updateBody;
-        $todo->limit = $request->updateLimit;
+        $todo = Todo::find($request->id);
+        $todo->body = $request->body;
+        $todo->limit = $request->limit;
         $todo->save();
         $todos =  Todo::where('user_id',Auth::id())->get();
         return $todos;

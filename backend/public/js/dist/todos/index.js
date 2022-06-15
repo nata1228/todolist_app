@@ -22519,7 +22519,7 @@ __webpack_require__.r(__webpack_exports__);
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
   data: function data() {
     return {
-      testDisabled: true,
+      flagDisabled: true,
       newTodo: {
         body: "",
         limit: ""
@@ -22528,10 +22528,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.getAxios();
+    this.getTodoList();
   },
   methods: {
-    getAxios: function getAxios() {
+    getTodoList: function getTodoList() {
       var _this = this;
 
       axios__WEBPACK_IMPORTED_MODULE_1___default().get("/todo/get").then(function (res) {
@@ -22547,7 +22547,8 @@ __webpack_require__.r(__webpack_exports__);
         body: this.newTodo.body,
         limit: this.newTodo.limit
       }).then(function (res) {
-        _this2.todos = res.data;
+        _this2.getTodoList();
+
         _this2.newTodo.body = '';
         _this2.newTodo.limit = '';
       });
@@ -22557,22 +22558,26 @@ __webpack_require__.r(__webpack_exports__);
 
       console.log(id);
       axios__WEBPACK_IMPORTED_MODULE_1___default().post("/todo/delete/".concat(id)).then(function (res) {
-        _this3.todos = res.data;
+        _this3.getTodoList();
       });
     },
-    editTodo: function editTodo() {
-      this.testDisabled = false;
+    editTodo: function editTodo(index) {
+      console.log(index);
+      console.log(this.todos[index]);
+      this.todos[index].disabled = false;
+      console.log(this.todos[index]);
     },
-    editFinish: function editFinish(body, limit) {
+    editFinish: function editFinish(todo) {
       var _this4 = this;
 
-      console.log(body, limit);
       axios__WEBPACK_IMPORTED_MODULE_1___default().post("/todo/update", {
-        body: body,
-        limit: limit
+        body: todo.body,
+        limit: todo.limit,
+        id: todo.id
       }).then(function (res) {
-        _this4.todos = res.data;
-        _this4.testDisabled = true;
+        _this4.getTodoList();
+
+        _this4.oldTodo = '';
       });
     }
   }

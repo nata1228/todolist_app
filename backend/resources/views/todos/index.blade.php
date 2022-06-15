@@ -16,15 +16,16 @@
         </div>
 
         <div class="main">
-                <div class="main-container" v-for="todo in todos">
+                <div class="main-container" v-for="(todo, index) in todos" :key="todo">
+                    <div><p>@{{ index }}</p></div>
                     <div class="contents">
-                        <input type="text" v-model="todo.body" :disabled="testDisabled" name="updateBody">
-                        <input type="text" v-model="todo.limit" v-bind:disabled="testDisabled" name="updateLimit">
+                        <input type="text" v-model="todo.body" v-bind:disabled="flagDisabled" >
+                        <input type="text" v-model="todo.limit" v-bind:disabled="flagDisabled" >
                     </div> 
                     
                     <div class="button">
-                        <button class="btn btn-primary" @click="editTodo" v-if="testDisabled">編集</button>
-                        <button class="btn btn-primary" @click="editFinish(todo.body ,todo.limit)" v-else>完了</button>
+                        <button class="btn btn-primary" @click="editTodo(index)" v-if="flagDisabled">編集</button>
+                        <button class="btn btn-primary" @click="editFinish(todo)" v-else>完了</button>
                         <button  class="btn btn-danger" @click="deleteTodo(todo.id)">削除</button>
                     </div>
                 </div>

@@ -9,4 +9,9 @@ class Todo extends Model
 {
     use HasFactory;
     protected $fillable = ['body', 'limit'];
+    protected $appends = ['disabled'];
+    public function getDisabledAttribute()
+    {
+        return true;
+    }
 }

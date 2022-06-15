@@ -4,19 +4,19 @@ import axios from "axios";
 createApp({
     data() {
         return {
-            testDisabled: true,
+            flagDisabled: true,
             newTodo: {
                 body: "",
                 limit: "",
             },            
-            todos: []
+            todos: [],
         };
     },
     mounted() {
-        this.getAxios();
+        this.getTodoList();
     },
     methods: {
-        getAxios(){
+        getTodoList(){
             axios.get("/todo/get")
             .then(res => {
                 console.log(res.data);
@@ -29,7 +29,7 @@ createApp({
                     body: this.newTodo.body,
                     limit: this.newTodo.limit
                 }).then(res => {
-                    this.todos = res.data
+                    this.getTodoList()
                     this.newTodo.body = '';
                     this.newTodo.limit = '';
                 })
@@ -38,19 +38,22 @@ createApp({
             console.log(id);
             axios.post(`/todo/delete/${id}`)
             .then(res => {
-                this.todos = res.data
+                this.getTodoList()
             })
-        },editTodo(){
-            this.testDisabled = false
+        },editTodo(index){
+            console.log(index);
+            console.log(this.todos[index]);
+            this.todos[index].disabled = false;
+            console.log(this.todos[index]);
         },
-        editFinish(body ,limit){
-            console.log(body ,limit);
+        editFinish(todo){
             axios.post("/todo/update",{
-                body: body,
-                limit: limit
+                body: todo.body,
+                limit: todo.limit,
+                id: todo.id
             }).then(res => {
-                this.todos = res.data
-                this.testDisabled = true
+                this.getTodoList()
+                this.oldTodo = '';
             })
         }
     }
