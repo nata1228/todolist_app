@@ -4,14 +4,6 @@
     margin: 60px 0px;
 }
 
-/* .main{
-    display: flex;
-    justify-content: space-around;
-    margin: 60px 90px;
-    width: 100%;
-} */
-
-
 .main-container{
     display: flex;
     justify-content: space-around;
@@ -28,11 +20,21 @@ p{
     padding: 30px;
 }
 
-.button{
+.switch{
     display: flex;
     justify-content: space-around;
+    margin: 5px;
 }
 
 a{
     margin-right:30px;
+}
+
+.contents input{
+    border: none;
+    background-color: white;
+}
+
+.switch button{
+    margin-right: 5px;
 }
