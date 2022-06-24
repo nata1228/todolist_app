@@ -22519,7 +22519,6 @@ __webpack_require__.r(__webpack_exports__);
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
   data: function data() {
     return {
-      flagDisabled: true,
       newTodo: {
         body: "",
         limit: ""
@@ -22535,14 +22534,12 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios__WEBPACK_IMPORTED_MODULE_1___default().get("/todo/get").then(function (res) {
-        console.log(res.data);
         _this.todos = res.data;
       });
     },
     addTodo: function addTodo() {
       var _this2 = this;
 
-      console.log(this.newTodo.body);
       axios__WEBPACK_IMPORTED_MODULE_1___default().post("/todo/store", {
         body: this.newTodo.body,
         limit: this.newTodo.limit
@@ -22556,16 +22553,12 @@ __webpack_require__.r(__webpack_exports__);
     deleteTodo: function deleteTodo(id) {
       var _this3 = this;
 
-      console.log(id);
       axios__WEBPACK_IMPORTED_MODULE_1___default().post("/todo/delete/".concat(id)).then(function (res) {
         _this3.getTodoList();
       });
     },
     editTodo: function editTodo(index) {
-      console.log(index);
-      console.log(this.todos[index]);
       this.todos[index].disabled = false;
-      console.log(this.todos[index]);
     },
     editFinish: function editFinish(todo) {
       var _this4 = this;

@@ -17,14 +17,13 @@
 
         <div class="main">
                 <div class="main-container" v-for="(todo, index) in todos" :key="todo">
-                    <div><p>@{{ index }}</p></div>
                     <div class="contents">
-                        <input type="text" v-model="todo.body" v-bind:disabled="flagDisabled" >
-                        <input type="text" v-model="todo.limit" v-bind:disabled="flagDisabled" >
+                        <input type="text" v-model="todo.body" v-bind:disabled="todo.disabled" >
+                        <input type="date" v-model="todo.limit" v-bind:disabled="todo.disabled" >
                     </div> 
                     
-                    <div class="button">
-                        <button class="btn btn-primary" @click="editTodo(index)" v-if="flagDisabled">編集</button>
+                    <div class="switch">
+                        <button class="btn btn-primary" @click="editTodo(index)" v-if="todo.disabled">編集</button>
                         <button class="btn btn-primary" @click="editFinish(todo)" v-else>完了</button>
                         <button  class="btn btn-danger" @click="deleteTodo(todo.id)">削除</button>
                     </div>
