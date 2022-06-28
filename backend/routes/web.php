@@ -28,8 +28,6 @@ require __DIR__.'/auth.php';
 Route::group(['middleware' => 'auth', 'prefix' => 'todo'], function() {
     Route::get('/',[TodoController::class,'index'])->name('todo.index');
     Route::get('get',[TodoController::class,'get'])->name('todo.get');
-    Route::get('edit/{id}',[TodoController::class,'edit'])->name('todo.edit');
-    Route::post('info',[TodoController::class,'info'])->name('todo.info');
     Route::post('store',[TodoController::class,'store'])->name('todo.store');
     Route::post('delete/{id}',[TodoController::class,'delete'])->name('todo.delete');
     Route::post('update',[TodoController::class,'update'])->name('todo.update');

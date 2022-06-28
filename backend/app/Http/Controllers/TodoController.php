@@ -9,44 +9,24 @@ use Illuminate\Support\Facades\Auth;
 class TodoController extends Controller
 {
     public function index() {
-        $todos = Todo::where('user_id',Auth::id())->get();
+        $todos = $this->get();
         return view('todos.index', compact('todos'));
     }
 
     public function store(Request $request) {
-        \Log::debug($request);
-        $todo = new Todo();
-        $todo->user_id = Auth::id();
-        $todo->body = $request->body;
-        $todo->limit = $request->limit;
-        $todo->save();
-        $todos =  Todo::where('user_id',Auth::id())->get();
-        return $todos;
-    }
-
-    public function edit($id) {
-        $todo = Todo::find($id);
-        return view('todos.edit', compact('todo'));
+        Todo::create([
+            'user_id' => Auth::id(),
+            'body' => $request->body,
+            'limit' => $request->limit
+        ]);
     }
 
     public function delete($id) {
-        $todo = Todo::find($id);
-        $todo->delete();
-        $todos =  Todo::where('user_id',Auth::id())->get();
-        return $todos;
+        Todo::find($id) -> delete();
     }
 
     public function update(Request $request) {
-        $todo = Todo::find($request->id);
-        $todo->body = $request->body;
-        $todo->limit = $request->limit;
-        $todo->save();
-        $todos =  Todo::where('user_id',Auth::id())->get();
-        return $todos;
-    }
-
-    public function info(Request $request){
-        return response()->json($request->body);
+        Todo::find($request->id) -> update($request->all());
     }
 
     public function get(){

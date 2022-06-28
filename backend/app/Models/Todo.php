@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Todo extends Model
 {
     use HasFactory;
-    protected $fillable = ['body', 'limit'];
+    protected $guarded = ['id'];
     protected $appends = ['disabled'];
     public function getDisabledAttribute()
     {

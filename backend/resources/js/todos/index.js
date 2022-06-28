@@ -22,21 +22,23 @@ createApp({
             })
         },
         addTodo(){
-                axios.post("/todo/store",{
-                    body: this.newTodo.body,
-                    limit: this.newTodo.limit
-                }).then(res => {
-                    this.getTodoList()
-                    this.newTodo.body = '';
-                    this.newTodo.limit = '';
-                })
+            axios.post("/todo/store",{
+                body: this.newTodo.body,
+                limit: this.newTodo.limit
+            })
+            .then(res => {
+                this.getTodoList();
+                this.newTodo.body = '';
+                this.newTodo.limit = '';
+            })
         },
         deleteTodo(id){
             axios.post(`/todo/delete/${id}`)
             .then(res => {
-                this.getTodoList()
+                this.getTodoList();
             })
-        },editTodo(index){
+        }
+        ,editTodo(index){
             this.todos[index].disabled = false;
         },
         editFinish(todo){
@@ -44,8 +46,9 @@ createApp({
                 body: todo.body,
                 limit: todo.limit,
                 id: todo.id
-            }).then(res => {
-                this.getTodoList()
+            })
+            .then(res => {
+                this.getTodoList();
                 this.oldTodo = '';
             })
         }
